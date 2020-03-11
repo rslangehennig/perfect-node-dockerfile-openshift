@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: DeploymentConfig
 metadata:
-  name: tektoncd-nodejs-tutorial-dc
+  name: perfect-node-dockerfile-openshift-dc
 spec:
   replicas: 1
   strategy:
@@ -12,9 +12,9 @@ spec:
         traffic: "true"
     spec:
       containers:
-        - image: docker-registry.default.svc:5000/web-backend/tektoncd-nodejs-tutorial:latest
+        - image: docker-registry.default.svc:5000/web-backend/perfect-node-dockerfile-openshift:latest
           imagePullPolicy: Always
-          name: tektoncd-nodejs-tutorial-image
+          name: perfect-node-dockerfile-openshift-container
           ports:
             - containerPort: 8080
               protocol: "TCP"
