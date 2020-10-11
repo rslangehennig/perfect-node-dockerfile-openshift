@@ -1,9 +1,15 @@
-http = require("http");
+const express = require('express');
+const app = express();
+const path = require('path');
+const router = express.Router();
 
-http
-  .createServer(function(req, res) {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.write("Hello! I have been deployed by Fadin -- v5");
-    res.end();
-  })
-  .listen(8080);
+router.get('/',function(req,res){
+  res.sendFile(path.join(__dirname+'/static/index.html'));
+  //__dirname : It will resolve to your project folder.
+});
+
+//add the router
+app.use('/', router);
+app.listen(process.env.port || 8080);
+
+console.log('Running at Port 8080');
