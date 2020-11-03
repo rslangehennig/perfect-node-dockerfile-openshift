@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: image-registry.openshift-image-registry.svc:5000/helm-chart-demo/perfect-node
+  repository: image-registry.openshift-image-registry.svc:5000/helm-chart-demo/perfect-node-dockerfile-openshift
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -43,13 +43,13 @@ service:
   port: 8080
 
 ingress:
-  enabled: false
+  enabled: enable
   annotations:
     {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: chart-example.local
+    - host: perfect-node-dockerfile-openshift
       paths: []
   tls: []
   #  - secretName: chart-example-tls
