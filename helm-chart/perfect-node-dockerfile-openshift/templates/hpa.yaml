@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "perfect-node.fullname" . }}
+  name: {{ include "perfect-node-dockerfile-openshift.fullname" . }}
   labels:
-    {{- include "perfect-node.labels" . | nindent 4 }}
+    {{- include "perfect-node-dockerfile-openshift.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "perfect-node.fullname" . }}
+    name: {{ include "perfect-node-dockerfile-openshift.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

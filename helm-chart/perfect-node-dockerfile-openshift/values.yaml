@@ -1,4 +1,4 @@
-# Default values for perfect-node.
+# Default values for perfect-node-dockerfile-openshift.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -43,7 +43,7 @@ service:
   port: 8080
 
 ingress:
-  enabled: enable
+  enabled: false
   annotations:
     {}
     # kubernetes.io/ingress.class: nginx
