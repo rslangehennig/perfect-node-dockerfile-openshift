@@ -13,10 +13,8 @@ spec:
       {{- include "perfect-node-dockerfile-openshift.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
+        auto-deploy: {{ randAlphaNum 5 | quote }}
       labels:
         {{- include "perfect-node-dockerfile-openshift.selectorLabels" . | nindent 8 }}
     spec:
