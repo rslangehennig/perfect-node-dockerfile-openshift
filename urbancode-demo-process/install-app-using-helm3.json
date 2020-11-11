@@ -1,0 +1,405 @@
+{
+    "name": "install-app-using-helm3",
+    "description": "",
+    "rootActivity": {
+        "edges": [
+            {
+                "to": "Start Image Build",
+                "from": "Git Clone Repository",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Install Helm",
+                "from": "Helm Does Release Exist",
+                "type": "FAILURE",
+                "value": ""
+            },
+            {
+                "to": "Ping App Endpoint",
+                "from": "Install Helm",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Check Helm and Cluster health",
+                "from": "Delete Files and Directories",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Helm Upgrade",
+                "from": "Helm Does Release Exist",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "66d4891b09d257f4819440d78280d5",
+                "from": "Ping App Endpoint",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Ping App Endpoint",
+                "from": "Helm Upgrade",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Helm Does Release Exist",
+                "from": "Start Image Build",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Git Clone Repository",
+                "from": "Check Helm and Cluster health",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Delete Files and Directories",
+                "type": "ALWAYS",
+                "value": ""
+            }
+        ],
+        "offsets": [
+            {
+                "name": "Ping App Endpoint",
+                "x": -93.33333333333331,
+                "y": 1110,
+                "h": 110,
+                "w": 350
+            },
+            {
+                "name": "Helm Upgrade",
+                "x": -215,
+                "y": 950,
+                "h": 110,
+                "w": 290
+            },
+            {
+                "name": "Start Image Build",
+                "x": -87.5,
+                "y": 630,
+                "h": 110,
+                "w": 330
+            },
+            {
+                "name": "Check Helm and Cluster health",
+                "x": -180,
+                "y": 310,
+                "h": 110,
+                "w": 510
+            },
+            {
+                "name": "a4126b80f204b5748574192ae069d2",
+                "x": 425,
+                "y": 620,
+                "h": 130,
+                "w": 430
+            },
+            {
+                "name": "Install Helm",
+                "x": 105,
+                "y": 950,
+                "h": 110,
+                "w": 260
+            },
+            {
+                "name": "66d4891b09d257f4819440d78280d5",
+                "x": 1.6666666666666856,
+                "y": 1270,
+                "h": 100,
+                "w": 160
+            },
+            {
+                "name": "Delete Files and Directories",
+                "x": -205,
+                "y": 150,
+                "h": 110,
+                "w": 560
+            },
+            {
+                "name": "Git Clone Repository",
+                "x": -113.75,
+                "y": 470,
+                "h": 110,
+                "w": 380
+            },
+            {
+                "name": "Helm Does Release Exist",
+                "x": -185,
+                "y": 790,
+                "h": 110,
+                "w": 530
+            }
+        ],
+        "layoutMode": "auto",
+        "type": "graph",
+        "name": "77112b45-7fc5-4bd6-8417-0c8089d87b61",
+        "children": [
+            {
+                "type": "finish",
+                "name": "66d4891b09d257f4819440d78280d5",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "pluginVersion": 9,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "## This is a temporarly path for Helm3 for demo purposes \/home\/ucd\/helm-linux-amd64\n## Typically you would want to create a PV and add your Helm3 CLI and update the UCD agent Values.YAML path\n##\n#####\n##### User specified PV containing utilities to be executed by the UCD agent\n##### userUtils.executablesPath can list multiple directories, comma separated\n##### userUtils:\n###### existingClaimName: \"\"\n#####  executablesPath: \".\"\n\n\/home\/ucd\/helm-linux-amd64 version\n\/home\/ucd\/helm-linux-amd64 list -n helm-chart-demo\noc get pods",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "cachedAuthTokenRestriction": {
+                    "name": "System Default",
+                    "description": "Used by default for any plugin steps without a specified token restriction",
+                    "restrictions": [{
+                        "verb": "ALL",
+                        "url": "\/*"
+                    }]
+                },
+                "type": "plugin",
+                "name": "Check Helm and Cluster health",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "pluginVersion": 9,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "git clone --single-branch --branch helm-chart https:\/\/github.com\/MohammedFadin\/perfect-node-dockerfile-openshift.git\nls\npwd\ncd perfect-node-dockerfile-openshift\nls\n\nls \/opt\/ibm-ucd\/agent\/var\/work\/install-app-using-helm3",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "cachedAuthTokenRestriction": {
+                    "name": "System Default",
+                    "description": "Used by default for any plugin steps without a specified token restriction",
+                    "restrictions": [{
+                        "verb": "ALL",
+                        "url": "\/*"
+                    }]
+                },
+                "type": "plugin",
+                "name": "Git Clone Repository",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "pluginVersion": 74,
+                "commandName": "Delete Files and Directories",
+                "pluginName": "File Utils",
+                "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                "properties": {
+                    "baseDir": ".\/",
+                    "includes": "**\/*",
+                    "excludes": "",
+                    "followSymlinks": "false",
+                    "caseSensitive": "false"
+                },
+                "cachedAuthTokenRestriction": {
+                    "name": "System Default",
+                    "description": "Used by default for any plugin steps without a specified token restriction",
+                    "restrictions": [{
+                        "verb": "ALL",
+                        "url": "\/*"
+                    }]
+                },
+                "type": "plugin",
+                "name": "Delete Files and Directories",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": true,
+                "impersonationUseSudo": false,
+                "pluginVersion": 24,
+                "commandName": "Helm Does Release Exist",
+                "pluginName": "Kubernetes",
+                "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                "properties": {
+                    "release": "perfect-node-dockerfile-openshift",
+                    "flags": "-n\nhelm-chart-demo",
+                    "path": "\/home\/ucd\/helm-linux-amd64",
+                    "kubeconfig": ""
+                },
+                "cachedAuthTokenRestriction": {
+                    "name": "System Default",
+                    "description": "Used by default for any plugin steps without a specified token restriction",
+                    "restrictions": [{
+                        "verb": "ALL",
+                        "url": "\/*"
+                    }]
+                },
+                "type": "plugin",
+                "name": "Helm Does Release Exist",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "pluginVersion": 9,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "\/home\/ucd\/helm-linux-amd64 install perfect-node-dockerfile-openshift .\/perfect-node-dockerfile-openshift\/helm-chart\/perfect-node-dockerfile-openshift\/ -n helm-chart-demo",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "cachedAuthTokenRestriction": {
+                    "name": "System Default",
+                    "description": "Used by default for any plugin steps without a specified token restriction",
+                    "restrictions": [{
+                        "verb": "ALL",
+                        "url": "\/*"
+                    }]
+                },
+                "type": "plugin",
+                "name": "Install Helm",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "pluginVersion": 9,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "\/home\/ucd\/helm-linux-amd64 upgrade perfect-node-dockerfile-openshift .\/perfect-node-dockerfile-openshift\/helm-chart\/perfect-node-dockerfile-openshift -n helm-chart-demo",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "cachedAuthTokenRestriction": {
+                    "name": "System Default",
+                    "description": "Used by default for any plugin steps without a specified token restriction",
+                    "restrictions": [{
+                        "verb": "ALL",
+                        "url": "\/*"
+                    }]
+                },
+                "type": "plugin",
+                "name": "Helm Upgrade",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "pluginVersion": 16,
+                "commandName": "Start Build",
+                "pluginName": "OpenShift",
+                "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                "properties": {
+                    "buildConfig": "perfect-node-dockerfile-openshift",
+                    "fromBuild": "",
+                    "flags": "--follow",
+                    "project": "helm-chart-demo",
+                    "url": "",
+                    "username": "",
+                    "token": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keypiip|ggp2Hlz0V771a8RhsOUQ+A==|xKUXbJ+AWQHtXupoevC4sw==}",
+                    "insecure": "false",
+                    "home": ""
+                },
+                "cachedAuthTokenRestriction": {
+                    "name": "System Default",
+                    "description": "Used by default for any plugin steps without a specified token restriction",
+                    "restrictions": [{
+                        "verb": "ALL",
+                        "url": "\/*"
+                    }]
+                },
+                "type": "plugin",
+                "name": "Start Image Build",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "pluginVersion": 9,
+                "commandName": "Shell",
+                "pluginName": "Shell",
+                "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                "properties": {
+                    "directoryOffset": ".",
+                    "shellInterpreter": "",
+                    "scriptBody": "curl http:\/\/perfect-node-dockerfile-openshift-helm-chart-demo.apps.mcm-ocp4.ocpdns.local\/",
+                    "runAsDaemon": "false",
+                    "outputFile": ""
+                },
+                "cachedAuthTokenRestriction": {
+                    "name": "System Default",
+                    "description": "Used by default for any plugin steps without a specified token restriction",
+                    "restrictions": [{
+                        "verb": "ALL",
+                        "url": "\/*"
+                    }]
+                },
+                "type": "plugin",
+                "name": "Ping App Endpoint",
+                "children": []
+            },
+            {
+                "name": "a4126b80f204b5748574192ae069d2",
+                "text": "We rely on Openshift S2I to build our image\n\nYou can use Kaniko or Buildah for Kubernetes",
+                "type": "note",
+                "children": []
+            }
+        ]
+    },
+    "properties": [
+        {
+            "name": "contextType",
+            "value": "Resource",
+            "description": "",
+            "secure": false
+        },
+        {
+            "name": "workingDir",
+            "value": "${p:resource\/work.dir}\/${p:process.name}",
+            "description": "",
+            "secure": false
+        },
+        {
+            "name": "defaultResourceId",
+            "value": "17351722-5276-c400-f391-4cf5d230f09f",
+            "description": "",
+            "secure": false
+        }
+    ],
+    "propDefs": [],
+    "teamMappings": [],
+    "linkedProcesses": []
+}
